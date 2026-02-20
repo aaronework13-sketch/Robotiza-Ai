@@ -2,54 +2,52 @@
 <html lang="es" class="scroll-smooth">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aaron Automations – Automatiza tu e-commerce con IA</title>
     <meta name="description"
-        content="Agencia de automatización con IA y n8n. Recuperación de carritos, soporte 24/7 y más.">
+        content="Agencia de automatización con IA y n8n. Recuperación de carritos, soporte 24/7, leads en WhatsApp y más." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
+                    fontFamily: { inter: ['Inter', 'sans-serif'] },
                     colors: {
-                        dark: {
-                            950: '#050508',
-                            900: '#0a0a0f',
-                            800: '#0d1117',
-                            700: '#161b22',
-                            600: '#21262d',
-                            500: '#30363d',
-                        },
-                        accent: {
-                            DEFAULT: '#3b82f6',
-                            light: '#60a5fa',
-                            dark: '#2563eb',
-                            glow: '#1d4ed8',
-                        }
-                    }
-                }
-            }
-        }
+                        dark: { 950: '#050508', 900: '#0a0a0f', 800: '#0d1117', 700: '#161b22', 600: '#21262d', 500: '#30363d' },
+                        accent: { DEFAULT: '#3b82f6', light: '#60a5fa', dark: '#2563eb', glow: '#1d4ed8' },
+                    },
+                },
+            },
+        };
     </script>
+
     <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
         body {
-            background-color: #0d1117;
-            color: #cbd5e1;
             font-family: 'Inter', sans-serif;
         }
 
-        /* Animations */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Fade-in */
         .fade-up {
             opacity: 0;
             transform: translateY(28px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transition: opacity .6s ease, transform .6s ease;
         }
 
         .fade-up.visible {
@@ -57,54 +55,167 @@
             transform: translateY(0);
         }
 
-        .delay-100 {
-            transition-delay: 0.1s;
+        .delay-1 {
+            transition-delay: .12s;
         }
 
-        .delay-200 {
-            transition-delay: 0.2s;
+        .delay-2 {
+            transition-delay: .24s;
         }
 
-        .delay-300 {
-            transition-delay: 0.3s;
+        .delay-3 {
+            transition-delay: .36s;
         }
 
-        /* Effects */
+        /* Card hover */
+        .card-hover {
+            transition: box-shadow .35s, transform .35s, border-color .35s;
+        }
+
+        .card-hover:hover {
+            box-shadow: 0 0 28px rgba(59, 130, 246, .12), 0 8px 28px rgba(0, 0, 0, .35);
+            transform: translateY(-5px);
+            border-color: rgba(59, 130, 246, .35);
+        }
+
+        /* Buttons */
+        .btn-blue {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 60%, #1d4ed8 100%);
+            transition: box-shadow .3s, transform .25s;
+        }
+
+        .btn-blue:hover {
+            box-shadow: 0 0 20px rgba(59, 130, 246, .45);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            transition: background .25s, color .25s, border-color .25s;
+        }
+
+        .btn-outline:hover {
+            background: rgba(59, 130, 246, .1);
+            border-color: #3b82f6;
+            color: #60a5fa;
+        }
+
+        /* Hero bg */
         .hero-grid {
-            background-image: linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+            background-image: linear-gradient(rgba(59, 130, 246, .03) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, .03) 1px, transparent 1px);
             background-size: 64px 64px;
         }
 
         .hero-glow {
-            background: radial-gradient(ellipse 55% 45% at 50% 35%, rgba(59, 130, 246, 0.07) 0%, transparent 70%);
+            background: radial-gradient(ellipse 55% 45% at 50% 35%, rgba(59, 130, 246, .07) 0%, transparent 70%);
         }
 
-        .btn-blue {
-            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 60%, #1d4ed8 100%);
-            transition: box-shadow 0.3s, transform 0.25s;
+        /* Popular badge */
+        @keyframes soft-pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 6px rgba(59, 130, 246, .35);
+            }
+
+            50% {
+                box-shadow: 0 0 18px rgba(59, 130, 246, .6);
+            }
         }
 
-        .btn-blue:hover {
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.45);
-            transform: translateY(-2px);
+        .badge-pulse {
+            animation: soft-pulse 2.5s ease-in-out infinite;
+        }
+
+        /* Mobile nav */
+        .mobile-nav {
+            transform: translateX(100%);
+            transition: transform .3s cubic-bezier(.4, 0, .2, 1);
+        }
+
+        .mobile-nav.open {
+            transform: translateX(0);
+        }
+
+        /* ── Service card animated border ── */
+        .service-card {
+            position: relative;
+            overflow: hidden;
+            transition: transform .4s ease, box-shadow .4s ease;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            padding: 1px;
+            border-radius: 1rem;
+            background: linear-gradient(135deg, transparent 40%, rgba(59, 130, 246, .3) 50%, transparent 60%);
+            background-size: 300% 300%;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            transition: background-position .6s ease;
+            background-position: 100% 100%;
+        }
+
+        .service-card:hover::before {
+            background-position: 0% 0%;
         }
 
         .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);
-            border-color: rgba(59, 130, 246, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 0 40px rgba(59, 130, 246, .1), 0 12px 32px rgba(0, 0, 0, .4);
+        }
+
+        .service-card .icon-ring {
+            transition: box-shadow .35s, background .35s;
+        }
+
+        .service-card:hover .icon-ring {
+            box-shadow: 0 0 16px rgba(59, 130, 246, .3);
+            background: rgba(59, 130, 246, .15);
+        }
+
+        /* ── Proceso pyramid / stacked ── */
+        .proceso-step {
+            transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+        }
+
+        .proceso-step:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(59, 130, 246, .12);
+            border-color: rgba(59, 130, 246, .35);
+        }
+
+        .step-number {
+            transition: box-shadow .35s ease, background .35s ease;
+        }
+
+        .proceso-step:hover .step-number {
+            box-shadow: 0 0 20px rgba(59, 130, 246, .4);
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+        }
+
+        /* Connector line between steps */
+        .connector-line {
+            width: 2px;
+            height: 40px;
+            background: linear-gradient(180deg, rgba(59, 130, 246, .4), rgba(59, 130, 246, .05));
+            margin: 0 auto;
         }
     </style>
 </head>
 
-<body class="antialiased overflow-x-hidden">
+<body class="bg-dark-800 text-slate-300 font-inter antialiased overflow-x-hidden">
 
-    <!-- Navbar -->
-    <nav class="fixed top-0 w-full z-50 bg-[#0d1117]/80 backdrop-blur-xl border-b border-white/[.04]">
+    <!-- ─── NAVBAR ──────────────────────────────────────────── -->
+    <nav class="fixed top-0 w-full z-50 bg-dark-800/80 backdrop-blur-xl border-b border-white/[.04]">
         <div class="max-w-[1100px] mx-auto flex items-center justify-between px-6 py-4">
             <a href="#" class="flex items-center gap-2 text-white font-bold text-lg tracking-tight">
-                <i data-lucide="zap" class="w-6 h-6 text-accent"></i>
+                <svg class="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
                 Aaron Automations
             </a>
             <div class="hidden md:flex items-center gap-8 text-sm text-slate-400">
@@ -113,32 +224,51 @@
                 <a href="#proceso" class="hover:text-white transition-colors">Proceso</a>
                 <a href="#contacto" class="hover:text-white transition-colors">Contacto</a>
             </div>
+            <button id="menuBtn" class="md:hidden text-white" aria-label="Menú">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+        <div id="mobileMenu"
+            class="mobile-nav fixed inset-y-0 right-0 w-64 bg-dark-900 border-l border-white/5 p-8 flex flex-col gap-5 md:hidden z-50">
+            <button id="closeMenu" class="self-end text-slate-400 hover:text-white" aria-label="Cerrar">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <a href="#servicios" class="text-slate-300 hover:text-white mob-link">Servicios</a>
+            <a href="#planes" class="text-slate-300 hover:text-white mob-link">Planes</a>
+            <a href="#proceso" class="text-slate-300 hover:text-white mob-link">Proceso</a>
+            <a href="#contacto" class="text-slate-300 hover:text-white mob-link">Contacto</a>
         </div>
     </nav>
 
-    <!-- Hero -->
+
+    <!-- ─── HERO ────────────────────────────────────────────── -->
     <section class="relative min-h-[88vh] flex items-center hero-grid overflow-hidden">
         <div class="hero-glow absolute inset-0 pointer-events-none"></div>
+
         <div class="relative max-w-[800px] mx-auto w-full px-6 text-center pt-32 pb-20">
             <div
                 class="fade-up inline-flex items-center gap-2 bg-accent/10 border border-accent/20 text-accent-light text-xs font-medium px-4 py-1.5 rounded-full mb-8">
                 <span class="w-1.5 h-1.5 bg-accent rounded-full animate-pulse"></span>
-                Automatización inteligente con n8n & IA
+                Automatización inteligente con n8n &amp; IA
             </div>
 
             <h1
-                class="fade-up delay-100 text-3xl sm:text-4xl lg:text-[3.25rem] font-extrabold leading-[1.15] text-white">
-                Automatiza tu e-commerce con <span
-                    class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-light">IA</span>
+                class="fade-up delay-1 text-3xl sm:text-4xl lg:text-[3.25rem] font-extrabold leading-[1.15] tracking-tight text-white">
+                Automatiza tu e-commerce con
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-light">IA</span>
             </h1>
 
-            <p class="fade-up delay-200 mt-6 text-base sm:text-lg text-slate-400 max-w-xl mx-auto leading-relaxed">
-                Leads en WhatsApp al instante, recuperación de carritos abandonados, soporte 24/7 y más – <span
-                    class="text-slate-300 font-medium">sin contratar personal extra.</span>
+            <p class="fade-up delay-2 mt-6 text-base sm:text-lg text-slate-400 max-w-xl mx-auto leading-relaxed">
+                Leads en WhatsApp al instante, recuperación de carritos abandonados, soporte 24/7 y más
+                – <span class="text-slate-300 font-medium">sin contratar personal extra.</span>
             </p>
 
-            <div class="fade-up delay-300 mt-9">
-                <a href="https://calendly.com/tu-agencia/demo" target="_blank"
+            <div class="fade-up delay-3 mt-9">
+                <a href="https://calendly.com/tu-agencia/demo" target="_blank" rel="noopener"
                     class="btn-blue inline-block text-white px-7 py-3 rounded-xl font-semibold text-sm shadow-lg shadow-accent/15">
                     Agendar una llamada
                 </a>
@@ -146,223 +276,527 @@
         </div>
     </section>
 
-    <!-- Servicios -->
-    <section id="servicios" class="py-24 bg-dark-900">
+
+    <!-- ─── SERVICIOS ───────────────────────────────────────── -->
+    <section id="servicios" class="py-24 lg:py-28 bg-dark-900">
         <div class="max-w-[900px] mx-auto px-6">
+
             <div class="text-center mb-14 fade-up">
                 <p class="text-accent font-semibold text-xs tracking-[.2em] uppercase mb-3">Servicios</p>
-                <h2 class="text-3xl font-bold text-white">Todo lo que automatizamos por ti</h2>
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">Todo lo que automatizamos por ti</h2>
+                <p class="mt-3 text-slate-400 text-sm max-w-md mx-auto">Conectamos tu e-commerce con IA para que cada
+                    proceso trabaje solo.</p>
             </div>
 
             <div class="grid sm:grid-cols-2 gap-5">
-                <!-- Service 1 -->
-                <div
-                    class="fade-up service-card bg-dark-700 border border-white/[.05] rounded-2xl p-8 transition-all duration-300">
+
+                <!-- Card 1 -->
+                <div class="fade-up service-card bg-dark-700 border border-white/[.05] rounded-2xl p-8">
                     <div class="flex items-start gap-5">
                         <div
-                            class="w-12 h-12 flex items-center justify-center rounded-xl bg-accent/10 border border-accent/20">
-                            <i data-lucide="shopping-cart" class="text-accent"></i>
+                            class="icon-ring w-14 h-14 flex-shrink-0 flex items-center justify-center rounded-2xl bg-accent/10 border border-accent/20">
+                            <svg class="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                            </svg>
                         </div>
                         <div>
-                            <h3 class="text-lg font-semibold text-white mb-2">Recuperación carritos IA</h3>
-                            <p class="text-slate-400 text-sm">Mensajes automáticos por WhatsApp y email para recuperar
-                                ventas perdidas.</p>
+                            <h3 class="text-lg font-semibold text-white mb-1.5">Recuperación carritos IA</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">Mensajes automáticos por WhatsApp y email
+                                para recuperar ventas perdidas con IA conversacional.</p>
+                            <div class="flex items-center gap-2 mt-3">
+                                <span
+                                    class="text-[10px] text-accent/80 font-medium bg-accent/10 px-2 py-0.5 rounded-full">WhatsApp</span>
+                                <span
+                                    class="text-[10px] text-accent/80 font-medium bg-accent/10 px-2 py-0.5 rounded-full">Email</span>
+                                <span
+                                    class="text-[10px] text-accent/80 font-medium bg-accent/10 px-2 py-0.5 rounded-full">IA</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Service 2 -->
-                <div
-                    class="fade-up delay-100 service-card bg-dark-700 border border-white/[.05] rounded-2xl p-8 transition-all duration-300">
+                <!-- Card 2 -->
+                <div class="fade-up delay-1 service-card bg-dark-700 border border-white/[.05] rounded-2xl p-8">
                     <div class="flex items-start gap-5">
                         <div
-                            class="w-12 h-12 flex items-center justify-center rounded-xl bg-accent/10 border border-accent/20">
-                            <i data-lucide="message-square" class="text-accent"></i>
+                            class="icon-ring w-14 h-14 flex-shrink-0 flex items-center justify-center rounded-2xl bg-accent/10 border border-accent/20">
+                            <svg class="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
+                            </svg>
                         </div>
                         <div>
-                            <h3 class="text-lg font-semibold text-white mb-2">Soporte automático 24/7</h3>
-                            <p class="text-slate-400 text-sm">Agente IA que responde dudas de tus clientes al instante,
-                                cualquier día.</p>
+                            <h3 class="text-lg font-semibold text-white mb-1.5">Soporte automático 24/7</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">Agente IA que responde dudas de tus
+                                clientes al instante, cualquier día y a cualquier hora.</p>
+                            <div class="flex items-center gap-2 mt-3">
+                                <span
+                                    class="text-[10px] text-accent/80 font-medium bg-accent/10 px-2 py-0.5 rounded-full">Chatbot</span>
+                                <span
+                                    class="text-[10px] text-accent/80 font-medium bg-accent/10 px-2 py-0.5 rounded-full">RAG</span>
+                                <span
+                                    class="text-[10px] text-accent/80 font-medium bg-accent/10 px-2 py-0.5 rounded-full">24/7</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Service 3 -->
-                <div
-                    class="fade-up delay-200 service-card bg-dark-700 border border-white/[.05] rounded-2xl p-8 transition-all duration-300">
+                <!-- Card 3 -->
+                <div class="fade-up delay-2 service-card bg-dark-700 border border-white/[.05] rounded-2xl p-8">
                     <div class="flex items-start gap-5">
                         <div
-                            class="w-12 h-12 flex items-center justify-center rounded-xl bg-accent/10 border border-accent/20">
-                            <i data-lucide="bar-chart-3" class="text-accent"></i>
+                            class="icon-ring w-14 h-14 flex-shrink-0 flex items-center justify-center rounded-2xl bg-accent/10 border border-accent/20">
+                            <svg class="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+                            </svg>
                         </div>
                         <div>
-                            <h3 class="text-lg font-semibold text-white mb-2">Reportes automáticos</h3>
-                            <p class="text-slate-400 text-sm">Métricas clave directo a tu email o Google Sheets cada
-                                semana.</p>
+                            <h3 class="text-lg font-semibold text-white mb-1.5">Reportes ventas automáticos</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">Informes semanales con métricas clave
+                                directo a tu email o Google Sheets. Sin tocar nada.</p>
+                            <div class="flex items-center gap-2 mt-3">
+                                <span
+                                    class="text-[10px] text-accent/80 font-medium bg-accent/10 px-2 py-0.5 rounded-full">Sheets</span>
+                                <span
+                                    class="text-[10px] text-accent/80 font-medium bg-accent/10 px-2 py-0.5 rounded-full">Analytics</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Service 4 -->
-                <div
-                    class="fade-up delay-300 service-card bg-dark-700 border border-white/[.05] rounded-2xl p-8 transition-all duration-300">
+                <!-- Card 4 -->
+                <div class="fade-up delay-3 service-card bg-dark-700 border border-white/[.05] rounded-2xl p-8">
                     <div class="flex items-start gap-5">
                         <div
-                            class="w-12 h-12 flex items-center justify-center rounded-xl bg-accent/10 border border-accent/20">
-                            <i data-lucide="bell" class="text-accent"></i>
+                            class="icon-ring w-14 h-14 flex-shrink-0 flex items-center justify-center rounded-2xl bg-accent/10 border border-accent/20">
+                            <svg class="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+                            </svg>
                         </div>
                         <div>
-                            <h3 class="text-lg font-semibold text-white mb-2">Alertas de stock</h3>
-                            <p class="text-slate-400 text-sm">Notificaciones cuando el inventario baja y contacto a
-                                proveedores.</p>
+                            <h3 class="text-lg font-semibold text-white mb-1.5">Alertas stock y proveedores</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">Notificaciones inteligentes cuando el
+                                inventario baja. Contacta proveedores automáticamente.</p>
+                            <div class="flex items-center gap-2 mt-3">
+                                <span
+                                    class="text-[10px] text-accent/80 font-medium bg-accent/10 px-2 py-0.5 rounded-full">Alertas</span>
+                                <span
+                                    class="text-[10px] text-accent/80 font-medium bg-accent/10 px-2 py-0.5 rounded-full">Inventario</span>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Planes -->
-    <section id="planes" class="py-24">
+
+    <!-- ─── PLANES ──────────────────────────────────────────── -->
+    <section id="planes" class="py-24 lg:py-28">
         <div class="max-w-[900px] mx-auto px-6">
+
             <div class="text-center mb-14 fade-up">
                 <p class="text-accent font-semibold text-xs tracking-[.2em] uppercase mb-3">Planes</p>
-                <h2 class="text-3xl font-bold text-white">Elige tu plan</h2>
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">Elige el plan que encaja con tu
+                    negocio</h2>
+                <p class="mt-3 text-slate-400 text-sm max-w-lg mx-auto">Setup completo, onboarding personalizado y
+                    soporte técnico incluido en todos los planes.</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-6">
-                <!-- Plan 1 -->
-                <div class="fade-up bg-dark-700 border border-white/[.05] rounded-2xl p-8 flex flex-col">
-                    <p class="text-xs font-semibold text-slate-500 uppercase">Básico</p>
-                    <div class="flex items-end gap-1 mt-2 mb-4">
-                        <span class="text-3xl font-bold text-white">79€</span><span
-                            class="text-slate-500 text-sm">/mes</span>
+
+                <!-- Básico -->
+                <div class="fade-up card-hover bg-dark-700 border border-white/[.05] rounded-2xl p-8 flex flex-col">
+                    <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Básico</p>
+                    <div class="flex items-end gap-1 mt-2 mb-0.5">
+                        <span class="text-3xl font-extrabold text-white">79 €</span>
+                        <span class="text-slate-500 text-sm mb-0.5">/mes</span>
                     </div>
-                    <p class="text-xs text-slate-500 mb-6">+ 500€ setup</p>
-                    <ul class="space-y-3 text-sm text-slate-300 mb-8 flex-1">
-                        <li class="flex gap-2"><i data-lucide="check" class="w-4 text-accent"></i> Recuperación carritos
+                    <p class="text-xs text-slate-500 mb-6">+ 500 € setup único</p>
+                    <hr class="border-white/[.06] mb-6" />
+                    <ul class="flex-1 space-y-3 text-sm text-slate-300">
+                        <li class="flex items-start gap-2.5">
+                            <svg class="w-4 h-4 text-accent flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Recuperación carritos WhatsApp + Email
                         </li>
-                        <li class="flex gap-2"><i data-lucide="check" class="w-4 text-accent"></i> Confirmación pedidos
+                        <li class="flex items-start gap-2.5">
+                            <svg class="w-4 h-4 text-accent flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Confirmación pedidos automática
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <svg class="w-4 h-4 text-accent flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Guardado en Sheets + alertas stock
                         </li>
                     </ul>
                     <a href="#contacto"
-                        class="border border-white/10 text-slate-300 block text-center px-4 py-2 rounded-xl text-sm font-semibold hover:bg-white/5 transition">Empezar</a>
+                        class="btn-outline mt-8 block text-center border border-white/10 text-slate-300 px-5 py-2.5 rounded-xl font-semibold text-sm">Empezar</a>
                 </div>
 
-                <!-- Plan 2 -->
+                <!-- Medio (Popular) -->
                 <div
-                    class="fade-up delay-100 bg-dark-700 border-2 border-accent/25 rounded-2xl p-8 flex flex-col relative">
+                    class="fade-up delay-1 card-hover relative bg-dark-700 border-2 border-accent/25 rounded-2xl p-8 flex flex-col ring-1 ring-accent/10">
                     <div
-                        class="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase">
+                        class="badge-pulse absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-white text-[10px] font-bold px-3.5 py-1 rounded-full uppercase tracking-wider">
                         Popular</div>
-                    <p class="text-xs font-semibold text-accent uppercase">Medio</p>
-                    <div class="flex items-end gap-1 mt-2 mb-4">
-                        <span class="text-3xl font-bold text-white">119€</span><span
-                            class="text-slate-500 text-sm">/mes</span>
+                    <p class="text-xs font-semibold text-accent uppercase tracking-wider">Medio</p>
+                    <div class="flex items-end gap-1 mt-2 mb-0.5">
+                        <span class="text-3xl font-extrabold text-white">119 €</span>
+                        <span class="text-slate-500 text-sm mb-0.5">/mes</span>
                     </div>
-                    <p class="text-xs text-slate-500 mb-6">+ 800€ setup</p>
-                    <ul class="space-y-3 text-sm text-slate-300 mb-8 flex-1">
-                        <li class="flex gap-2"><i data-lucide="check" class="w-4 text-accent"></i> Todo lo del Básico
+                    <p class="text-xs text-slate-500 mb-6">+ 800 € setup único</p>
+                    <hr class="border-white/[.06] mb-6" />
+                    <ul class="flex-1 space-y-3 text-sm text-slate-300">
+                        <li class="flex items-start gap-2.5">
+                            <svg class="w-4 h-4 text-accent flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Todo lo del plan Básico
                         </li>
-                        <li class="flex gap-2"><i data-lucide="check" class="w-4 text-accent"></i> IA Soporte</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="w-4 text-accent"></i> Lead Scoring</li>
+                        <li class="flex items-start gap-2.5">
+                            <svg class="w-4 h-4 text-accent flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            IA respuestas automáticas de soporte
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <svg class="w-4 h-4 text-accent flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Reporte semanal ventas automático
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <svg class="w-4 h-4 text-accent flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Lead scoring básico
+                        </li>
                     </ul>
                     <a href="#contacto"
-                        class="btn-blue text-white block text-center px-4 py-2 rounded-xl text-sm font-semibold">Empezar</a>
+                        class="btn-blue mt-8 block text-center text-white px-5 py-2.5 rounded-xl font-semibold text-sm">Empezar</a>
                 </div>
 
-                <!-- Plan 3 -->
-                <div class="fade-up delay-200 bg-dark-700 border border-white/[.05] rounded-2xl p-8 flex flex-col">
-                    <p class="text-xs font-semibold text-slate-500 uppercase">Alto</p>
-                    <div class="flex items-end gap-1 mt-2 mb-4">
-                        <span class="text-3xl font-bold text-white">199€</span><span
-                            class="text-slate-500 text-sm">/mes</span>
+                <!-- Alto -->
+                <div
+                    class="fade-up delay-2 card-hover bg-dark-700 border border-white/[.05] rounded-2xl p-8 flex flex-col">
+                    <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Alto</p>
+                    <div class="flex items-end gap-1 mt-2 mb-0.5">
+                        <span class="text-3xl font-extrabold text-white">199 €</span>
+                        <span class="text-slate-500 text-sm mb-0.5">/mes</span>
                     </div>
-                    <p class="text-xs text-slate-500 mb-6">+ 1.500€ setup</p>
-                    <ul class="space-y-3 text-sm text-slate-300 mb-8 flex-1">
-                        <li class="flex gap-2"><i data-lucide="check" class="w-4 text-accent"></i> Todo lo del Medio
+                    <p class="text-xs text-slate-500 mb-6">+ 1.500 € setup único</p>
+                    <hr class="border-white/[.06] mb-6" />
+                    <ul class="flex-1 space-y-3 text-sm text-slate-300">
+                        <li class="flex items-start gap-2.5">
+                            <svg class="w-4 h-4 text-accent flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Todo lo del plan Medio
                         </li>
-                        <li class="flex gap-2"><i data-lucide="check" class="w-4 text-accent"></i> Agente IA 24/7 (RAG)
+                        <li class="flex items-start gap-2.5">
+                            <svg class="w-4 h-4 text-accent flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Agente IA 24/7 con RAG
                         </li>
-                        <li class="flex gap-2"><i data-lucide="check" class="w-4 text-accent"></i> Mantenimiento
-                            Prioritario</li>
+                        <li class="flex items-start gap-2.5">
+                            <svg class="w-4 h-4 text-accent flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Upsell / cross-sell automático
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <svg class="w-4 h-4 text-accent flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Dashboard métricas + mantenimiento prioritario
+                        </li>
                     </ul>
                     <a href="#contacto"
-                        class="border border-white/10 text-slate-300 block text-center px-4 py-2 rounded-xl text-sm font-semibold hover:bg-white/5 transition">Empezar</a>
+                        class="btn-outline mt-8 block text-center border border-white/10 text-slate-300 px-5 py-2.5 rounded-xl font-semibold text-sm">Empezar</a>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Proceso -->
-    <section id="proceso" class="py-24 bg-dark-900">
+
+    <!-- ─── PROCESO (vertical creative timeline) ────────────── -->
+    <section id="proceso" class="py-24 lg:py-28 bg-dark-900">
         <div class="max-w-[600px] mx-auto px-6">
+
             <div class="text-center mb-16 fade-up">
                 <p class="text-accent font-semibold text-xs tracking-[.2em] uppercase mb-3">Proceso</p>
-                <h2 class="text-3xl font-bold text-white">Cómo trabajamos</h2>
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">Cómo trabajamos contigo</h2>
             </div>
 
-            <div class="space-y-8 relative">
-                <!-- Step 1 -->
-                <div class="fade-up bg-dark-700 border border-white/[.05] rounded-2xl p-8 text-center relative z-10">
-                    <div
-                        class="w-12 h-12 mx-auto bg-accent/10 border border-accent/20 rounded-full flex items-center justify-center text-accent font-bold text-xl mb-4">
-                        1</div>
-                    <h3 class="text-xl font-bold text-white mb-2">Diagnóstico</h3>
-                    <p class="text-slate-400 text-sm">Auditoría gratuita de 30 min para identificar oportunidades.</p>
-                </div>
-
-                <!-- Line -->
-                <div class="w-px h-8 bg-gradient-to-b from-accent/50 to-transparent mx-auto"></div>
-
-                <!-- Step 2 -->
+            <!-- Step 1 (wide) -->
+            <div class="fade-up proceso-step bg-dark-700 border border-white/[.05] rounded-2xl p-8 text-center">
                 <div
-                    class="fade-up delay-100 bg-dark-700 border border-white/[.05] rounded-2xl p-8 text-center relative z-10">
-                    <div
-                        class="w-12 h-12 mx-auto bg-accent/10 border border-accent/20 rounded-full flex items-center justify-center text-accent font-bold text-xl mb-4">
-                        2</div>
-                    <h3 class="text-xl font-bold text-white mb-2">Desarrollo</h3>
-                    <p class="text-slate-400 text-sm">Construimos tus automatizaciones en 1-3 semanas.</p>
-                </div>
-
-                <!-- Line -->
-                <div class="w-px h-8 bg-gradient-to-b from-accent/50 to-transparent mx-auto"></div>
-
-                <!-- Step 3 -->
-                <div
-                    class="fade-up delay-200 bg-dark-700 border border-white/[.05] rounded-2xl p-8 text-center relative z-10">
-                    <div
-                        class="w-12 h-12 mx-auto bg-accent/10 border border-accent/20 rounded-full flex items-center justify-center text-accent font-bold text-xl mb-4">
-                        3</div>
-                    <h3 class="text-xl font-bold text-white mb-2">Lanzamiento</h3>
-                    <p class="text-slate-400 text-sm">Implantación, formación y soporte continuo.</p>
+                    class="step-number w-14 h-14 mx-auto flex items-center justify-center rounded-full bg-accent/10 border border-accent/25 text-accent text-xl font-bold mb-4">
+                    1</div>
+                <h3 class="text-xl font-bold text-white mb-2">Diagnóstico gratuito</h3>
+                <p class="text-slate-400 text-sm leading-relaxed max-w-sm mx-auto">Llamada de 30 min para entender tu
+                    negocio e identificar los procesos que podemos automatizar con mayor impacto.</p>
+                <div class="flex justify-center gap-3 mt-4">
+                    <span class="text-[10px] text-accent/80 font-medium bg-accent/10 px-2.5 py-0.5 rounded-full">30
+                        min</span>
+                    <span
+                        class="text-[10px] text-accent/80 font-medium bg-accent/10 px-2.5 py-0.5 rounded-full">Gratis</span>
+                    <span class="text-[10px] text-accent/80 font-medium bg-accent/10 px-2.5 py-0.5 rounded-full">Sin
+                        compromiso</span>
                 </div>
             </div>
+
+            <!-- Connector -->
+            <div class="connector-line fade-up"></div>
+
+            <!-- Step 2 (indented narrower — pyramid feel) -->
+            <div
+                class="fade-up delay-1 proceso-step bg-dark-700 border border-white/[.05] rounded-2xl p-8 text-center max-w-[85%] mx-auto">
+                <div
+                    class="step-number w-14 h-14 mx-auto flex items-center justify-center rounded-full bg-accent/10 border border-accent/25 text-accent text-xl font-bold mb-4">
+                    2</div>
+                <h3 class="text-xl font-bold text-white mb-2">Desarrollo</h3>
+                <p class="text-slate-400 text-sm leading-relaxed max-w-xs mx-auto">En 1–3 semanas construimos tus
+                    automatizaciones. Comunicación constante por WhatsApp, sin sorpresas.</p>
+                <div class="flex justify-center gap-3 mt-4">
+                    <span class="text-[10px] text-accent/80 font-medium bg-accent/10 px-2.5 py-0.5 rounded-full">1–3
+                        semanas</span>
+                    <span
+                        class="text-[10px] text-accent/80 font-medium bg-accent/10 px-2.5 py-0.5 rounded-full">WhatsApp</span>
+                </div>
+            </div>
+
+            <!-- Connector -->
+            <div class="connector-line fade-up"></div>
+
+            <!-- Step 3 (even narrower — inverted pyramid) -->
+            <div
+                class="fade-up delay-2 proceso-step bg-dark-700 border border-white/[.05] rounded-2xl p-8 text-center max-w-[70%] mx-auto">
+                <div
+                    class="step-number w-14 h-14 mx-auto flex items-center justify-center rounded-full bg-accent/10 border border-accent/25 text-accent text-xl font-bold mb-4">
+                    3</div>
+                <h3 class="text-xl font-bold text-white mb-2">Lanzamiento y soporte</h3>
+                <p class="text-slate-400 text-sm leading-relaxed max-w-xs mx-auto">Implementación por fases, formación
+                    de tu equipo y soporte técnico 24/7 para que todo funcione perfecto.</p>
+                <div class="flex justify-center gap-3 mt-4">
+                    <span class="text-[10px] text-accent/80 font-medium bg-accent/10 px-2.5 py-0.5 rounded-full">Por
+                        fases</span>
+                    <span class="text-[10px] text-accent/80 font-medium bg-accent/10 px-2.5 py-0.5 rounded-full">Soporte
+                        24/7</span>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="border-t border-white/[.04] bg-dark-900 py-10">
-        <div class="max-w-[1100px] mx-auto px-6 text-center">
-            <p class="text-slate-500 text-sm">© 2026 Aaron Automations. Todos los derechos reservados.</p>
+
+    <!-- ─── CONTACTO ────────────────────────────────────────── -->
+    <section id="contacto" class="py-24 lg:py-28 relative overflow-hidden">
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/[.03] rounded-full blur-[100px] pointer-events-none">
+        </div>
+
+        <div class="relative max-w-[550px] mx-auto px-6">
+
+            <div class="text-center mb-10 fade-up">
+                <p class="text-accent font-semibold text-xs tracking-[.2em] uppercase mb-3">Contacto</p>
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">¿Listo para automatizar tu negocio?
+                </h2>
+                <p class="mt-3 text-slate-400 text-sm max-w-md mx-auto">
+                    Déjanos tus datos y te contactaremos con un plan personalizado para tu e-commerce.
+                </p>
+            </div>
+
+            <div class="fade-up delay-1 bg-dark-700 border border-white/[.05] rounded-2xl p-8">
+
+                <form id="contactForm" class="grid sm:grid-cols-2 gap-4">
+                    <div class="flex flex-col gap-1">
+                        <label for="nombre"
+                            class="text-[11px] text-slate-500 font-medium uppercase tracking-wider">Nombre</label>
+                        <input id="nombre" type="text" required placeholder="Tu nombre"
+                            class="bg-dark-600 border border-white/[.08] rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:border-accent/40 focus:ring-1 focus:ring-accent/20 outline-none transition" />
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label for="telefono"
+                            class="text-[11px] text-slate-500 font-medium uppercase tracking-wider">Teléfono</label>
+                        <input id="telefono" type="tel" required placeholder="+34 600 000 000"
+                            class="bg-dark-600 border border-white/[.08] rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:border-accent/40 focus:ring-1 focus:ring-accent/20 outline-none transition" />
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label for="email"
+                            class="text-[11px] text-slate-500 font-medium uppercase tracking-wider">Email</label>
+                        <input id="email" type="email" required placeholder="tu@email.com"
+                            class="bg-dark-600 border border-white/[.08] rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:border-accent/40 focus:ring-1 focus:ring-accent/20 outline-none transition" />
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label for="nicho"
+                            class="text-[11px] text-slate-500 font-medium uppercase tracking-wider">Sector</label>
+                        <select id="nicho" required
+                            class="bg-dark-600 border border-white/[.08] rounded-lg px-4 py-2.5 text-sm text-white focus:border-accent/40 focus:ring-1 focus:ring-accent/20 outline-none transition">
+                            <option value="" disabled selected>Selecciona</option>
+                            <option value="ecommerce">E-commerce</option>
+                            <option value="restaurante">Restaurante / Hostelería</option>
+                            <option value="clinica">Clínica / Salud</option>
+                            <option value="agencia">Agencia / Marketing</option>
+                            <option value="educacion">Educación</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+
+                    <!-- Descripción -->
+                    <div class="sm:col-span-2 flex flex-col gap-1">
+                        <label for="descripcion"
+                            class="text-[11px] text-slate-500 font-medium uppercase tracking-wider">¿Qué necesitas
+                            automatizar?</label>
+                        <textarea id="descripcion" rows="3"
+                            placeholder="Ej: Quiero recuperar carritos abandonados por WhatsApp y tener un chatbot de soporte..."
+                            class="bg-dark-600 border border-white/[.08] rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:border-accent/40 focus:ring-1 focus:ring-accent/20 outline-none transition resize-none"></textarea>
+                    </div>
+
+                    <!-- Plan selector -->
+                    <div class="sm:col-span-2 flex flex-col gap-1">
+                        <label class="text-[11px] text-slate-500 font-medium uppercase tracking-wider">Plan de
+                            interés</label>
+                        <div class="grid grid-cols-3 gap-3 mt-1">
+                            <label class="plan-option cursor-pointer">
+                                <input type="radio" name="plan" value="basico" class="sr-only peer" required />
+                                <div
+                                    class="peer-checked:border-accent peer-checked:bg-accent/10 peer-checked:text-white border border-white/[.08] bg-dark-600 rounded-lg px-3 py-3 text-center transition-all hover:border-accent/30">
+                                    <p class="text-sm font-semibold text-white">Básico</p>
+                                    <p class="text-[10px] text-slate-500 mt-0.5">500 € setup</p>
+                                </div>
+                            </label>
+                            <label class="plan-option cursor-pointer">
+                                <input type="radio" name="plan" value="medio" class="sr-only peer" />
+                                <div
+                                    class="peer-checked:border-accent peer-checked:bg-accent/10 peer-checked:text-white border border-white/[.08] bg-dark-600 rounded-lg px-3 py-3 text-center transition-all hover:border-accent/30">
+                                    <p class="text-sm font-semibold text-white">Medio</p>
+                                    <p class="text-[10px] text-slate-500 mt-0.5">800 € setup</p>
+                                </div>
+                            </label>
+                            <label class="plan-option cursor-pointer">
+                                <input type="radio" name="plan" value="alto" class="sr-only peer" />
+                                <div
+                                    class="peer-checked:border-accent peer-checked:bg-accent/10 peer-checked:text-white border border-white/[.08] bg-dark-600 rounded-lg px-3 py-3 text-center transition-all hover:border-accent/30">
+                                    <p class="text-sm font-semibold text-white">Alto</p>
+                                    <p class="text-[10px] text-slate-500 mt-0.5">1.500 € setup</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-2 mt-1">
+                        <button type="submit"
+                            class="btn-blue w-full text-white px-5 py-2.5 rounded-xl font-semibold text-sm">Enviar</button>
+                    </div>
+                </form>
+
+                <p id="formOk" class="hidden text-center text-green-400 text-sm mt-5 font-medium">✅ ¡Gracias! Te
+                    contactaremos pronto.</p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ─── FOOTER ──────────────────────────────────────────── -->
+    <footer class="border-t border-white/[.04] bg-dark-900">
+        <div class="max-w-[1100px] mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+
+            <div class="text-center md:text-left">
+                <a href="#"
+                    class="flex items-center justify-center md:justify-start gap-2 text-white font-bold text-base mb-1">
+                    <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    Aaron Automations
+                </a>
+                <p class="text-[11px] text-slate-500">© 2026 Aaron Automations. Todos los derechos reservados.</p>
+            </div>
+
+            <p class="text-[10px] text-slate-500 tracking-widest uppercase text-center">
+                Shopify · WooCommerce · WhatsApp Business · Google Sheets · CRMs
+            </p>
+
+            <div class="flex items-center gap-5">
+                <a href="#" class="text-slate-500 hover:text-white transition-colors text-xs">Privacidad</a>
+                <a href="#" class="text-slate-500 hover:text-white transition-colors text-xs">Términos</a>
+                <a href="https://wa.me/34600000000" target="_blank" rel="noopener"
+                    class="text-slate-500 hover:text-green-400 transition-colors" aria-label="WhatsApp">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                    </svg>
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener"
+                    class="text-slate-500 hover:text-blue-400 transition-colors" aria-label="LinkedIn">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                    </svg>
+                </a>
+                <a href="mailto:hola@aaronaut.com" class="text-slate-500 hover:text-accent-light transition-colors"
+                    aria-label="Email">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                    </svg>
+                </a>
+            </div>
+
         </div>
     </footer>
 
+
+    <!-- ─── JS ──────────────────────────────────────────────── -->
     <script>
-        // Init Lucide Icons
-        lucide.createIcons();
+        // Fade-in
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+        document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 
-        // Fade Up Animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
+        // Mobile menu
+        const menuBtn = document.getElementById('menuBtn');
+        const closeMenu = document.getElementById('closeMenu');
+        const mobMenu = document.getElementById('mobileMenu');
+        menuBtn.addEventListener('click', () => mobMenu.classList.add('open'));
+        closeMenu.addEventListener('click', () => mobMenu.classList.remove('open'));
+        document.querySelectorAll('.mob-link').forEach(l => l.addEventListener('click', () => mobMenu.classList.remove('open')));
+        document.addEventListener('click', e => { if (mobMenu.classList.contains('open') && !mobMenu.contains(e.target) && e.target !== menuBtn) mobMenu.classList.remove('open'); });
 
-        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+        // Form
+        const form = document.getElementById('contactForm');
+        form.addEventListener('submit', e => { e.preventDefault(); form.style.display = 'none'; document.getElementById('formOk').classList.remove('hidden'); });
     </script>
+
 </body>
 
 </html>
